@@ -45,8 +45,6 @@ public class App {
                 new Accommodation(3, "Villa", "King", 4, "Luxurious villa with private pool"),
                 new Accommodation(4, "Guesthouse", "Double", 2, "Comfortable twin room with shared bathroom"),
                 new Accommodation(5, "Resort", "Queen", 3, "Beautiful resort suite overlooking the beach")));
-//        ReadDatabase accommodation = new ReadDatabase();
-//        accommodation.readAccommodationTable();
 
         InsertDatabase insertRoomFair = new InsertDatabase();
         insertRoomFair.insertDataIntoRoomFairTable(Arrays.asList(
@@ -54,8 +52,6 @@ public class App {
                 new RoomFair(2, 80.55, "Spring"),
                 new RoomFair(3, 90.55, "Winter"),
                 new RoomFair(4, 90.55, "Autumn")));
-//        ReadDatabase roomFair = new ReadDatabase();
-//        roomFair.readRoomFairTable();
 
         InsertDatabase insertAccommodationRoomFairRelation = new InsertDatabase();
         insertAccommodationRoomFairRelation.insertDataIntoAccommodationRoomFairRelationTable(Arrays.asList(

@@ -12,58 +12,58 @@ public class ReadDatabase {
     Connection conn = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-    public void readAccommodationTable(){
-            try {
-        Class.forName(JDBC_DRIVER);
-        conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        String sql = "SELECT id, type, bed_type, max_guests, description FROM accommodation";
-        preparedStatement = conn.prepareStatement(sql);
-        resultSet = preparedStatement.executeQuery();
-
+    public void readAccommodationTable() {
         List<Accommodation> accommodationList = new ArrayList<>();
-        while (resultSet.next()) {
-            int id = resultSet.getInt("id");
-            String type = resultSet.getString("type");
-            String bedType = resultSet.getString("bed_type");
-            int MAX_GUEST = resultSet.getInt("max_guests");
-            String description = resultSet.getString("description");
-
-            Accommodation accommodation = new Accommodation(id, type,bedType, MAX_GUEST, description);
-
-            accommodationList.add(accommodation);
-        }
-        accommodationList.forEach(accommodation -> {
-            System.out.println("Accommodation ID: " + accommodation.getId());
-            System.out.println("Type: " + accommodation.getType());
-            System.out.println("Bed Type: " + accommodation.getBedType());
-            System.out.println("Max Guests: " + accommodation.getMAX_GUEST());
-            System.out.println("Description: " + accommodation.getDescription());
-            System.out.println();
-        });
-
-        resultSet.close();
-        preparedStatement.close();
-        conn.close();
-    } catch (
-    SQLException sqlException1) {
-        sqlException1.printStackTrace();
-    } catch (Exception exception) {
-        exception.printStackTrace();
-    } finally {
         try {
-            if (resultSet != null)
-                resultSet.close();
-        } catch (SQLException sqlException2) {
-            sqlException2.printStackTrace();
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            String sql = "SELECT id, type, bed_type, max_guests, description FROM accommodation";
+            preparedStatement = conn.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String type = resultSet.getString("type");
+                String bedType = resultSet.getString("bed_type");
+                int MAX_GUEST = resultSet.getInt("max_guests");
+                String description = resultSet.getString("description");
+
+                Accommodation accommodation = new Accommodation(id, type, bedType, MAX_GUEST, description);
+
+                accommodationList.add(accommodation);
+            }
+            accommodationList.forEach(accommodation -> {
+                System.out.println("Accommodation ID: " + accommodation.getId());
+                System.out.println("Type: " + accommodation.getType());
+                System.out.println("Bed Type: " + accommodation.getBedType());
+                System.out.println("Max Guests: " + accommodation.getMAX_GUEST());
+                System.out.println("Description: " + accommodation.getDescription());
+                System.out.println();
+            });
+
+            resultSet.close();
+            preparedStatement.close();
+            conn.close();
+        } catch (
+                SQLException sqlException1) {
+            sqlException1.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+            } catch (SQLException sqlException2) {
+                sqlException2.printStackTrace();
+            }
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException sqlException3) {
+                sqlException3.printStackTrace();
+            }
         }
-        try {
-            if (conn != null)
-                conn.close();
-        } catch (SQLException sqlException3) {
-            sqlException3.printStackTrace();
-        }
-    }
-            System.out.println("Good job for accommodation table!");
+        System.out.println("Good job for accommodation table!");
 }
     public void readRoomFairTable(){
 
